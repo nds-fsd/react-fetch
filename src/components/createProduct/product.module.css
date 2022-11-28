@@ -1,24 +1,23 @@
 .card {
-    width: 50%;
-    margin: 20px auto;
-    border: solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    padding: 30px;
-    flex-direction: column;
+  width: 50%;
+  margin: 20px auto;
+  border: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 30px;
+  flex-direction: column;
 }
 
 .card:hover {
-    background-color: beige;
+  background-color: beige;
 }
 
 input:invalid:required {
-    border: 2px dashed red;
+  border: 2px dashed red;
 }
 
 input:valid {
-border: 2px solid black;
+  border: 2px solid black;
 }
-  

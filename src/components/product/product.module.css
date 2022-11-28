@@ -1,14 +1,14 @@
 .card {
-    height: 80px;
-    width: 50%;
-    margin: 20px auto;
-    border: solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
+  height: 80px;
+  width: 50%;
+  margin: 20px auto;
+  border: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }
 
 .card:hover {
-    background-color: beige;
+  background-color: beige;
 }

@@ -1,14 +1,19 @@
-import React from 'react';
-import styles from './product.module.css';
+/* eslint-disable react/prop-types */
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./product.module.css";
 
 const Product = (props) => {
-    debugger;
-    const product = props.item;
-    return (
-        <div className={styles.card}>
-            <p>{product.name} {product.price}€</p>
-        </div>
-    )
+  const product = props.item;
+  return (
+    <Link to={`product/${product.id}`}>
+      <div className={styles.card}>
+        <p>
+          {product.name} {product.price}€
+        </p>
+      </div>
+    </Link>
+  );
 };
 
 export default Product;
