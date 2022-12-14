@@ -21,6 +21,7 @@ const CreateProduct = (props) => {
             name,
             price
         };
+        
         const options = {
             method: 'POST',
             mode: 'cors',
@@ -36,6 +37,18 @@ const CreateProduct = (props) => {
             console.log(data);
             reloadPage();
         });
+    }
+    const handleSubmitWithWrapper = () => {
+        const url = '/todo';
+        const body = {
+            name,
+            price
+        };
+
+        apiWrapper(url, 'POST', body)
+            .then((data) => {
+                setProduct(data);
+            });
     }
 
 
