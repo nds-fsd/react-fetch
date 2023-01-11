@@ -1,28 +1,21 @@
-import { useState } from "react";
-import CreateProduct from "./components/createProduct/createProduct";
-import ProductList from "./components/productList/productList";
-import { About } from "./components/about/about";
-import { Contact } from "./components/contact/contact";
-import { NoMatch } from "./components/noMatch/noMatch";
 import "./App.css";
+import { NoMatch } from "./components/noMatch/noMatch";
+import ProductList from "./components/productList/productList";
 
-import { Routes, Route, Link } from "react-router-dom";
-import { ProductDetail } from "./components/productDetail/productDetail";
-import Faqs from "./components/faq/faq";
+import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import Login from "./components/login/login";
+import PrivateRoutes from "./components/privateRoute/privateRoute";
+import Signup from "./components/signup/signup";
+import { removeSession } from "./utils/localStorage.utils";
 
 function App() {
-  const [reload, setReload] = useState(false);
+    const navigate = useNavigate()
 
-  const reloadPage = () => {
-    setReload(!reload);
-  };
 
   return (
     <div>
-      <h1> ROUTING EXAMPLES</h1>
-      {/* <ProductList reload={reload} />
-      <CreateProduct  reloadPage={reloadPage} /> */}
       <nav>
+        <h1> ROUTING EXAMPLES</h1>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -34,32 +27,26 @@ function App() {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/signup">Signup</Link>
           </li>
           <li>
-            <Link to="/nothing-here">Nothing Here</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/faqs">FAQs</Link>
+            <button onClick={() => {removeSession();navigate('/login')}}>Logout</button>
           </li>
         </ul>
       </nav>
       <div className="main-router">
         <Routes>
-          <Route path="app" element={<ProductList reload={reload} />}>
-            <Route
-              path="product/:idDelProducto" // (al ser dinamico se llama parametro "param")
-              element={<ProductDetail />}
-            />
-            <Route
-              path="create" // /app/create (se llama slug)
-              element={<CreateProduct reloadPage={reloadPage} />}
-            />
+          <Route path="/" element={<Navigate to="/app" />} />
+          <Route path="app" element={<PrivateRoutes />}>
+            <Route path="" element={<ProductList />} />
           </Route>
 
-          <Route path="about" element={<About />} />
-          <Route path="faqs" element={<Faqs />} />
-          <Route path="contact" element={<Contact />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
+
           <Route path="*" element={<NoMatch />} />
         </Routes>
         {/* <MyRouter /> */}
