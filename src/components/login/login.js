@@ -6,11 +6,16 @@ import styles from "./login.module.css";
 const Login = () => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
     const navigate = useNavigate()
   // fetch logic
   const fakeLogin = () => {
     fetch("http://localhost:3005/login",{
         method:'POST',
+        headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+          },
         body:JSON.stringify({
             email,
             password
@@ -18,10 +23,12 @@ const Login = () => {
     })
       .then((response) => {
         return response.json();
-      }).then((payload)=>{
-        if(payload.token){
-            setUserSession(payload)
+
+      }).then((res)=>{
+        if(res.token){
+            setUserSession(res)
             navigate('/app')
+            
         }
       })
   };

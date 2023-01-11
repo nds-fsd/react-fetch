@@ -6,11 +6,11 @@ import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./components/login/login";
 import PrivateRoutes from "./components/privateRoute/privateRoute";
 import Signup from "./components/signup/signup";
-import { removeSession } from "./utils/localStorage.utils";
+import { getUserToken, removeSession } from "./utils/localStorage.utils";
+import { About } from "./components/about/about";
 
 function App() {
-    const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -26,14 +26,27 @@ function App() {
           <li>
             <Link to="/about">About</Link>
           </li>
+          {!getUserToken() && (
+            <>
+              <li>
+                <Link to="/signup">Signup</Link>
+              </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+            </>
+          )}
           <li>
-            <Link to="/signup">Signup</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <button onClick={() => {removeSession();navigate('/login')}}>Logout</button>
+            {getUserToken() && (
+              <button
+                onClick={() => {
+                  removeSession();
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </button>
+            )}
           </li>
         </ul>
       </nav>
@@ -43,7 +56,7 @@ function App() {
           <Route path="app" element={<PrivateRoutes />}>
             <Route path="" element={<ProductList />} />
           </Route>
-
+          <Route path="/about" element={<About />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
 
