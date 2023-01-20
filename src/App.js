@@ -13,6 +13,7 @@ function App() {
 
   return (
     <div>
+      <h1>Learn React</h1>
       <ProductList reload={reload} />
       <CreateProduct  reloadPage={reloadPage} />
     </div>
