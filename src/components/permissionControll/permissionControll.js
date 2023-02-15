@@ -5,7 +5,7 @@ const PermissionControll = ({permission, children}) => {
   if (hasPermission(permission)) {
     return children;
   } else {
-    return <NoMatch />;
+    return undefined;
   }
 };
 export default PermissionControll;
